@@ -1,0 +1,44 @@
+class Solution {
+    public String maximumOddBinaryNumber(String s) {
+
+      /*  int n=s.length();
+        int oneCnt=0;
+        for(char ch:s.toCharArray()){
+            if(ch=='1')oneCnt++;
+        }
+
+        StringBuilder sb=new StringBuilder();
+
+        for(int i=0;i<oneCnt-1;i++){
+            sb.append('1');
+        }
+        int zeroCnt=n-oneCnt;
+        for(int i=0;i<zeroCnt;i++){
+            sb.append('0');
+        }
+        sb.append('1');
+
+        return sb.toString();*/
+
+        int n=s.length();
+        int left=0;
+        int right=n-1;
+        char[]ch=s.toCharArray();
+        while(left<=right){
+            if(ch[left]=='1'){
+                left++;
+            }
+            if(ch[right]=='0'){
+                right--;
+            }
+            if(left<right && ch[left]=='0'&& ch[right]=='1'){
+                ch[left]='1';
+                ch[right]='0';
+            }
+        }
+
+        ch[right]='0';
+        ch[n-1]='1';
+        return new String(ch);
+    }
+}
